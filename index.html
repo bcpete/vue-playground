@@ -3,72 +3,18 @@
     <head>
         <title></title>
         <style>
-            .is-loading { background: red; }
-            .color-red { color: red; }
-            .color-blue { color: blue; }
         </style>
     </head>
     <body>
         <div id="root">
-            <input type="text" id="input" v-model="newName"></input>
-            <button @click="addName">Add Name</button>
-            <ul>
-                <li v-for="name in names" v-text="name"></li>
-            </ul>
-
-            <button :title="title">Hover over me</button>
-            <button :class="{ 'is-loading' : isLoaded }" @click="isLoading">Class Binding</button>
-            <button :disabled="disabled">Disabled</button>
-            <h2> All Tasks </h2>
-            <ul>
-                <li v-for="task in tasks"  v-text="task.description"></li>
-            </ul>
-            <h2> Incomplete Tasks </h2>
-            <ul>
-                <li v-for="task in incompleteTasks" v-text="task.description"></li>
-            </ul>
+            <task-list>
+                <task>Learn php</task>
+                <task>Learn Vue</task>
+                <task>Get job</task>
+            </task-list>
         </div>
 
         <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
-
-        <script>
-            const app = new Vue({
-                el: '#root',
-                data: {
-                    newName: '',
-                    className: 'color-red',
-                    names: ['brady', 'monica', 'sean', 'jake'],
-                    title: 'now the title is being set through javascript suckah',
-                    isLoaded: true,
-                    disabled: true,
-                    message: 'Hello World',
-                    tasks : [
-                        { description: 'do stuff', completed: true},
-                        { description: 'do more stuff', completed: true},
-                        { description: 'learn vue', completed: false },
-                        { description: 'learn php', completed: false },
-                        { description: 'get job at paradowski', completed: false}
-                    ]
-                },
-                computed: {
-                    incompleteTasks() {
-                        return this.tasks.filter(task => !task.completed);
-                    }
-                },
-
-                methods: {
-                    addName() {
-                        this.names.push(this.newName);
-                        this.newName = '';
-                    },
-
-                    isLoading() {
-                        this.isLoaded = !this.isLoaded;
-                    }
-                },
-
-            });
-
-        </script>
+        <script src="main.js"></script>
     </body>
 </html>
