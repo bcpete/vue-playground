@@ -2,6 +2,11 @@
 <html>
     <head>
         <title></title>
+        <style>
+            .is-loading { background: red; }
+            .color-red { color: red; }
+            .color-blue { color: blue; }
+        </style>
     </head>
     <body>
         <div id="root">
@@ -10,6 +15,10 @@
             <ul>
                 <li v-for="name in names" v-text="name"></li>
             </ul>
+
+            <button :title="title">Hover over me</button>
+            <button :class="{ 'is-loading' : isLoaded }" @click="isLoading">Class Binding</button>
+            <button :disabled="disabled">Disabled</button>
         </div>
 
         <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
@@ -19,7 +28,11 @@
                 el: '#root',
                 data: {
                     newName: '',
-                    names: ['brady', 'monica', 'sean', 'jake']
+                    className: 'color-red',
+                    names: ['brady', 'monica', 'sean', 'jake'],
+                    title: 'now the title is being set through javascript suckah',
+                    isLoaded: true,
+                    disabled: true
                 },
 
                 methods: {
@@ -27,6 +40,10 @@
                         this.names.push(this.newName);
                         this.newName = '';
                     },
+
+                    isLoading() {
+                        this.isLoaded = !this.isLoaded;
+                    }
                 },
 
             });
