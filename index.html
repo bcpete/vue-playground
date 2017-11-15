@@ -5,20 +5,32 @@
     </head>
     <body>
         <div id="root">
-            <input type="text" id="input" v-model="message">
-
-            <p>The value of the input is : {{ message }}</p>
+            <input type="text" id="input" v-model="newName"></input>
+            <button @click="addName">Add Name</button>
+            <ul>
+                <li v-for="name in names" v-text="name"></li>
+            </ul>
         </div>
 
         <script src="https://unpkg.com/vue@2.5.3/dist/vue.js"></script>
 
         <script>
-            new Vue({
+            const app = new Vue({
                 el: '#root',
                 data: {
-                    message: 'Hello World'
-                }
+                    newName: '',
+                    names: ['brady', 'monica', 'sean', 'jake']
+                },
+
+                methods: {
+                    addName() {
+                        this.names.push(this.newName);
+                        this.newName = '';
+                    },
+                },
+
             });
+
         </script>
     </body>
 </html>
